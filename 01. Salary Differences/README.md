@@ -52,7 +52,7 @@ INNER JOIN db_dept d
 WHERE d.department = 'marketing' or d.department = 'engineering'
 ````
 
-### 3. Group the result by department and find the highest salary for each department.
+### 3. Group the result by `department` and find the highest salary for each department.
 ````sql
 SELECT 
   d.department, 
@@ -77,7 +77,7 @@ WHERE d.department = 'marketing' or d.department = 'engineering'
 GROUP BY d.department)
 ````
 
-### 5. Find the difference between the two highest salaries
+### 5. Find the difference between the two highest salaries.
 
 ````sql
 WITH db_highest_salary AS (
