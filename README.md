@@ -16,6 +16,6 @@ Here, you will find my solutions to SQL problems sourced from StrataScratch:
   - Solution: [link-to-solution-2](link-to-solution-2)
   - ...
 
-Feel free to explore the solutions and gain insights into SQL problem-solving techniques. If you have any questions or feedback, please feel free to reach out to me at kohjingyan@gmail.com. 
+Feel free to explore the solutions and gain insights into SQL problem-solving techniques. If you have any questions or feedback, please feel free to reach out to me at kohjingyan@gmail.com or at LinkedIn(https://www.linkedin.com/in/koh-jing-yan/)
 
 Happy coding! :rocket:
