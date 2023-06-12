@@ -27,48 +27,47 @@ Table: facebook_web_log
     
 4. Naming this column as `rn2`, use the window function **ROW_NUMBER()** to assign a unique sequential number for each user and each `rn`, sorted in:
 
-    a. First table: chronological order 
+    a. First table: Chronological order 
     
     b. Second table: Reverse chronological order
     
-5. Filter the result to `rn2 = 1`.
+5. Filter the result to `rn2 = 1` (the latest page_load and earliest page_exit).
 6. Group the result by `user_id` and find the average of respective page_exit timestamps and respective page_load timestamps.
 
 ## Step-by-step Guide
-### 1. Join the two tables.
+### 1. Filter the table to where users perform page_load and page_exit only.
 ````sql
-SELECT 
-  d.department, 
-  MAX(salary) AS highest_salary
-FROM db_employee e 
-INNER JOIN db_dept d 
-  ON e.department_id = d.id
-````
-### 2. Filter the data to marketing and engineering departments only.
-````sql
-SELECT 
-  d.department, 
-  MAX(salary) AS highest_salary
-FROM db_employee e 
-INNER JOIN db_dept d 
-  ON e.department_id = d.id
-WHERE d.department = 'marketing' or d.department = 'engineering'
+SELECT *
+FROM facebook_web_log
+WHERE action = 'page_load' OR action = 'page_exit'
 ````
 
-### 3. Group the result by `department` and find the highest salary for each department.
+### 2. Assign a unique sequential number in the chronological order.
 ````sql
-SELECT 
-  d.department, 
-  MAX(salary) AS highest_salary
-FROM db_employee e 
-INNER JOIN db_dept d 
-  ON e.department_id = d.id
-WHERE d.department = 'marketing' or d.department = 'engineering'
-GROUP BY d.department
+SELECT *, 
+	ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY timestamp) rn
+FROM facebook_web_log
+WHERE action = 'page_load' OR action = 'page_exit'
 ````
 
-### 4. Create a CTE and,
-### 5. Find the difference between the two highest salaries.
+### 3. Save the result as a CTE and perform a self join.
+````sql
+WITH cte AS (
+	SELECT *, 
+		ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY timestamp) rn
+	FROM facebook_web_log
+	WHERE action = 'page_load' OR action = 'page_exit')
+SELECT *
+FROM cte c1
+INNER JOIN cte c2
+ON c1.action <> c2.action 
+	AND c1.user_id = c2.user_id
+	AND c1.timestamp < c2.timestamp
+WHERE c1.action = 'page_load' 
+	AND c2.action = 'page_exit'
+````
+
+### 4. assign a unique sequential number for each user and each `rn`.
 
 ````sql
 WITH cte AS (
@@ -76,21 +75,66 @@ WITH cte AS (
 		ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY timestamp) rn
 	FROM facebook_web_log
 	WHERE action = 'page_load' OR action = 'page_exit')
-	SELECT x.user_id, AVG(x.t2 - x.t1)
-	FROM (
-		SELECT c1.user_id,
-			c1.timestamp AS t1, 
-			c2.timestamp AS t2,
-			ROW_NUMBER() OVER (PARTITION BY c2.user_id, c2.rn ORDER BY (c2.user_id, c2.rn) ASC, c1.rn DESC) rn2
-		FROM cte c1
-		INNER JOIN cte c2
-		ON c1.action <> c2.action 
-			AND c1.user_id = c2.user_id
-			AND c1.timestamp < c2.timestamp
-		WHERE c1.action = 'page_load' 
-			AND c2.action = 'page_exit') x
-	WHERE x.rn2 = 1
-	GROUP BY x.user_id;
+SELECT c1.user_id,
+	c1.timestamp AS t1, 
+	c2.timestamp AS t2,
+	ROW_NUMBER() OVER (PARTITION BY c2.user_id, c2.rn ORDER BY (c2.user_id, c2.rn) ASC, c1.rn DESC) rn2
+FROM cte c1
+INNER JOIN cte c2
+ON c1.action <> c2.action 
+	AND c1.user_id = c2.user_id
+	AND c1.timestamp < c2.timestamp
+WHERE c1.action = 'page_load' 
+	AND c2.action = 'page_exit'
+````
+
+### 5. Filter the result to `rn2 = 1`.
+
+````sql
+WITH cte AS (
+	SELECT *, 
+		ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY timestamp) rn
+	FROM facebook_web_log
+	WHERE action = 'page_load' OR action = 'page_exit')
+SELECT *
+FROM (
+	SELECT c1.user_id,
+		c1.timestamp AS t1, 
+		c2.timestamp AS t2,
+		ROW_NUMBER() OVER (PARTITION BY c2.user_id, c2.rn ORDER BY (c2.user_id, c2.rn) ASC, c1.rn DESC) rn2
+	FROM cte c1
+	INNER JOIN cte c2
+	ON c1.action <> c2.action 
+		AND c1.user_id = c2.user_id
+		AND c1.timestamp < c2.timestamp
+	WHERE c1.action = 'page_load' 
+		AND c2.action = 'page_exit') x
+WHERE x.rn2 = 1
+````
+
+### 6. Group the result by `user_id` and find the average session time for each user.
+
+````sql
+WITH cte AS (
+	SELECT *, 
+		ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY timestamp) rn
+	FROM facebook_web_log
+	WHERE action = 'page_load' OR action = 'page_exit')
+SELECT x.user_id, AVG(x.t2 - x.t1)
+FROM (
+	SELECT c1.user_id,
+		c1.timestamp AS t1, 
+		c2.timestamp AS t2,
+		ROW_NUMBER() OVER (PARTITION BY c2.user_id, c2.rn ORDER BY (c2.user_id, c2.rn) ASC, c1.rn DESC) rn2
+	FROM cte c1
+	INNER JOIN cte c2
+	ON c1.action <> c2.action 
+		AND c1.user_id = c2.user_id
+		AND c1.timestamp < c2.timestamp
+	WHERE c1.action = 'page_load' 
+		AND c2.action = 'page_exit') x
+WHERE x.rn2 = 1
+GROUP BY x.user_id;
 ````
 
 # Final Output
