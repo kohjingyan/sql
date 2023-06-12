@@ -52,6 +52,6 @@ FROM db_highest_salary;
 ````
 
 ## Final Output
-[alt text](![image](https://github.com/kohjingyan/sql/assets/120747480/1bab0425-9d8c-4c80-82c4-de61b8031789)
+![image](https://github.com/kohjingyan/sql/assets/120747480/1bab0425-9d8c-4c80-82c4-de61b8031789)
 
 If you have any questions or feedback, please feel free to email me at kohjingyan@gmail.com or at [LinkedIn](https://www.linkedin.com/in/koh-jing-yan/).
