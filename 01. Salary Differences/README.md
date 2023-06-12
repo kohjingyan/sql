@@ -19,13 +19,15 @@ Table: db_dept
 | id            | int         |
 | department    | varchar     |
 
-### Logical approach
+## The thinking behind the approach
 
-### Step by step
+
+## Step by step
 1. Bla bla
 Code
 2. Bla bla
 Code 
+
 Etc.
 
 ````sql
@@ -44,4 +46,4 @@ SELECT
 FROM db_highest_salary;
 ````
 
-Please feel free to email me at kohjingyan@gmail.com for …
+If you have any questions or feedback, please feel free to email me at kohjingyan@gmail.com or at [LinkedIn](https://www.linkedin.com/in/koh-jing-yan/)
