@@ -5,6 +5,7 @@ You may find the source of the SQL question from [StrataScratch](https://platfor
 **Write a query that calculates the difference between the highest salaries found in the marketing and engineering departments. Output just the absolute difference in salaries.**
 
 Table: db_employee
+````
 | Column Name   | Column Type |
 | ------------- |:-----------:|
 | id            | int         |
@@ -12,6 +13,7 @@ Table: db_employee
 | last_name     | varchar     |
 | salary        | int         |
 | department_id | int         |
+````
 
 Table: db_dept
 | Column Name   | Column Type |
@@ -46,4 +48,4 @@ SELECT
 FROM db_highest_salary;
 ````
 
-If you have any questions or feedback, please feel free to email me at kohjingyan@gmail.com or at [LinkedIn](https://www.linkedin.com/in/koh-jing-yan/)
+If you have any questions or feedback, please feel free to email me at kohjingyan@gmail.com or at [LinkedIn](https://www.linkedin.com/in/koh-jing-yan/).
