@@ -16,14 +16,21 @@ Table: facebook_web_log
 
 ## The thinking behind the approach
 1. Use **WHERE** clause to filter the table to where users perform page_load and page_exit only.
-2. For each user, assign a unique sequential number in the chronological order. We name this column as `rn`.
+2. For each user, use the window function **ROW_NUMBER()** to assign a unique sequential number in the chronological order. We name this column as `rn`.
 3. Save this as a CTE and perform a self join on three conditions:
+
     a. `user_id`
+    
     b. `action` such that for first table is page_load; for second table is page_exit.
+    
     c. page_load should happen before page_exit.
-4. Naming this column as `rn2`, assign a unique sequential number for each user and each `rn`, sorted in:
+    
+4. Naming this column as `rn2`, use the window function **ROW_NUMBER()** to assign a unique sequential number for each user and each `rn`, sorted in:
+
     a. First table: chronological order 
+    
     b. Second table: Reverse chronological order
+    
 5. Filter the result to `rn2 = 1`.
 6. Group the result by `user_id` and find the average of respective page_exit timestamps and respective page_load timestamps.
 
