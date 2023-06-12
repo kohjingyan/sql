@@ -31,7 +31,7 @@ Table: db_dept
 4. Create a temporary result by creating a Common Table Expression (CTE) named `db_highest_salary`.
 5. Find the difference between the two highest salaries based on the CTE.
 
-## Step by step guide
+## Step-by-step Guide
 ### 1. Join the two tables.
 ````sql
 SELECT 
