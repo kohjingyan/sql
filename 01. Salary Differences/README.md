@@ -95,7 +95,7 @@ SELECT
 FROM db_highest_salary;
 ````
 
-## Final Output
+# Final Output
 |  salary_difference  | 
 | ------------------  | 
 | 2400                |
