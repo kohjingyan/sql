@@ -4,6 +4,7 @@ You may find the source of the SQL question from [here](https://platform.stratas
 
 **Write a query that calculates the difference between the highest salaries found in the marketing and engineering departments. Output just the absolute difference in salaries.**
 
+Table: db_employee
 | Column Name   | Column Type |
 | ------------- |:-----------:|
 | id            | int         |
@@ -11,6 +12,12 @@ You may find the source of the SQL question from [here](https://platform.stratas
 | last_name     | varchar     |
 | salary        | int         |
 | department_id | int         |
+
+Table: db_dept
+| Column Name   | Column Type |
+| ------------- |:-----------:|
+| id            | int         |
+| department    | varchar     |
 
 ### Logical approach
 
