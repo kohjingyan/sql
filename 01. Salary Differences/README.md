@@ -4,10 +4,11 @@ You may find the source of the SQL question from [StrataScratch](https://platfor
 
 **Write a query that calculates the difference between the highest salaries found in the marketing and engineering departments. Output just the absolute difference in salaries.**
 
-Table: db_employee
+
 ````
+Table: db_employee
 | Column Name   | Column Type |
-| ------------- |:-----------:|
+| ------------- |-------------|
 | id            | int         |
 | first_name    | varchar     |
 | last_name     | varchar     |
@@ -15,11 +16,13 @@ Table: db_employee
 | department_id | int         |
 ````
 
+````
 Table: db_dept
 | Column Name   | Column Type |
 | ------------- |:-----------:|
 | id            | int         |
 | department    | varchar     |
+````
 
 ## The thinking behind the approach
 
