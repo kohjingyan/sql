@@ -13,6 +13,7 @@ Here, you will find my solutions to SQL problems sourced from StrataScratch:
 | No.       | Problem       | Difficulty  |
 | --------- |:-------------:| :----------:|
 | 01.    | [Salaries Differences](https://github.com/kohjingyan/sql/tree/main/01.%20Salaries%20Differences) | Easy |
+| 02.    | [Users By Average Session Time](https://github.com/kohjingyan/sql/tree/main/02.%20Users%20By%20Average%20Session%20Time) | Medium |
 
 Feel free to explore the solutions and gain insights into SQL problem-solving techniques. If you have any questions or feedback, please feel free to reach out to me at kohjingyan@gmail.com or at [LinkedIn](https://www.linkedin.com/in/koh-jing-yan/).
 
