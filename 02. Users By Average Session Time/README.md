@@ -15,11 +15,17 @@ Table: facebook_web_log
 ````
 
 ## The thinking behind the approach
-1. Use **JOIN** on both tables based on `department id` from `db_employee` and `id` from `db_dept`.
-2. Use **WHERE** to filter the data so that it consists of marketing and engineering departments only.
-3. Group the result using the **GROUP BY** clause by `department` and find the highest salary for each department.
-4. Create a temporary result by creating a Common Table Expression (CTE) named `db_highest_salary`.
-5. Find the difference between the two highest salaries based on the CTE.
+1. Use **WHERE** clause to filter the table to where users perform page_load and page_exit only.
+2. For each user, assign a unique sequential number in the chronological order. We name this column as `rn`.
+3. Save this as a CTE and perform a self join on three conditions:
+    a. `user_id`
+    b. `action` such that for first table is page_load; for second table is page_exit.
+    c. page_load should happen before page_exit.
+4. Naming this column as `rn2`, assign a unique sequential number for each user and each `rn`, sorted in:
+    a. First table: chronological order 
+    b. Second table: Reverse chronological order
+5. Filter the result to `rn2 = 1`.
+6. Group the result by `user_id` and find the average of respective page_exit timestamps and respective page_load timestamps.
 
 ## Step-by-step Guide
 ### 1. Join the two tables.
@@ -58,19 +64,26 @@ GROUP BY d.department
 ### 5. Find the difference between the two highest salaries.
 
 ````sql
-WITH db_highest_salary AS (
-  SELECT 
-    d.department, 
-    MAX(salary) AS highest_salary
-  FROM db_employee e 
-  INNER JOIN db_dept d 
-    ON e.department_id = d.id
-  WHERE d.department = 'marketing' OR d.department = 'engineering'
-  GROUP BY d.department)
-  
-SELECT 
-  MAX(highest_salary) - MIN(highest_salary) AS salary_difference
-FROM db_highest_salary;
+WITH cte AS (
+	SELECT *, 
+		ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY timestamp) rn
+	FROM facebook_web_log
+	WHERE action = 'page_load' OR action = 'page_exit')
+	SELECT x.user_id, AVG(x.t2 - x.t1)
+	FROM (
+		SELECT c1.user_id,
+			c1.timestamp AS t1, 
+			c2.timestamp AS t2,
+			ROW_NUMBER() OVER (PARTITION BY c2.user_id, c2.rn ORDER BY (c2.user_id, c2.rn) ASC, c1.rn DESC) rn2
+		FROM cte c1
+		INNER JOIN cte c2
+		ON c1.action <> c2.action 
+			AND c1.user_id = c2.user_id
+			AND c1.timestamp < c2.timestamp
+		WHERE c1.action = 'page_load' 
+			AND c2.action = 'page_exit') x
+	WHERE x.rn2 = 1
+	GROUP BY x.user_id;
 ````
 
 # Final Output
