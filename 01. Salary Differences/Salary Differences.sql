@@ -9,5 +9,5 @@ WHERE d.department = 'marketing' or d.department = 'engineering'
 GROUP BY d.department)
   
 SELECT 
-  MAX(highest_salary) - MIN(highest_salary)
+  MAX(highest_salary) - MIN(highest_salary) AS salary_difference
 FROM db_highest_salary;
