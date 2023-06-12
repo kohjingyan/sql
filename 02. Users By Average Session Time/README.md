@@ -67,7 +67,7 @@ WHERE c1.action = 'page_load'
 	AND c2.action = 'page_exit'
 ````
 
-### 4. assign a unique sequential number for each user and each `rn`.
+### 4. Assign a unique sequential number for each user and each `rn`.
 
 ````sql
 WITH cte AS (
