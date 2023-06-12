@@ -1,4 +1,4 @@
-You may find the source of the SQL question from [here](https://platform.stratascratch.com/coding/10308-salaries-differences?code_type=1).
+You may find the source of the SQL question from [StrataScratch](https://platform.stratascratch.com/coding/10308-salaries-differences?code_type=1).
 
 # Question
 
