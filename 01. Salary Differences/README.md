@@ -8,7 +8,7 @@ You may find the source of the SQL question from [StrataScratch](https://platfor
 ````
 Table: db_employee
 | Column Name   | Column Type |
-| ------------- |-------------|
+| ------------- | ----------- |
 | id            | int         |
 | first_name    | varchar     |
 | last_name     | varchar     |
@@ -19,7 +19,7 @@ Table: db_employee
 ````
 Table: db_dept
 | Column Name   | Column Type |
-| ------------- |:-----------:|
+| ------------- | ----------- |
 | id            | int         |
 | department    | varchar     |
 ````
@@ -47,7 +47,7 @@ WHERE d.department = 'marketing' or d.department = 'engineering'
 GROUP BY d.department)
   
 SELECT 
-  MAX(highest_salary) - MIN(highest_salary)
+  MAX(highest_salary) - MIN(highest_salary) AS salary_difference
 FROM db_highest_salary;
 ````
 
