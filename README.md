@@ -12,7 +12,7 @@ Here, you will find my solutions to SQL problems sourced from StrataScratch:
 
 | Tables        | Are           | Difficulty  |
 | ------------- |:-------------:| :-----:|
-| 01.    | [Salary Differences]() | Easy |
+| 01.    | [Salary Differences](01. Salary Differences) | Easy |
 
 - [Problem 1: Name of the problem](link-to-problem-1)
   - Solution: [link-to-solution-1](link-to-solution-1)
