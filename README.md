@@ -1,4 +1,7 @@
 # SQL Problem-Solving Portfolio :chart_with_upwards_trend:
+<span style="color:red">
+Text content
+</span>
 
 Welcome to my SQL problem-solving portfolio! In this repository, you will find my solutions to various SQL problems sourced from StrataScratch. This includes writing SQL query for easy, medium and hard difficulty.
 
