@@ -42,7 +42,7 @@ WHERE position = 1
 GROUP BY trackname
 ````
 
-### 3. Sort the number of times the song was ranked first in descending order
+### 3. Sort the number of times the song was ranked first in descending order.
 
 ````sql
 SELECT trackname, COUNT(position) as top
