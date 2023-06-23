@@ -44,8 +44,14 @@ There are two ways to think of the expected output:
 | 0          |             |              |             |
 | 1          |             |              |             |
 
+We will look at how to derive at **Expected Output 1**. The same method can be applied for **Expected Output 2**.
+1. For each non-survivor, `survived = 0`. We count the number of non-survivor by using **CASE WHEN**.\
+``
+SUM(IF survived = 0
+  1
+ELSE 0)
+``
 
-1. 
 
 ## Step-by-step Guide
 ### 1. Filter the result to songs that ranked the top.
