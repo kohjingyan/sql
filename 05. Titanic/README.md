@@ -2,17 +2,17 @@ You may find the source of the SQL question from [StrataScratch](https://platfor
 
 # Question
 
-**Make a report showing the number of survivors and non-survivors by passenger class.
+**Make a report showing the number of survivors and non-survivors by passenger class.**
 
-Classes are categorized based on the pclass value as:
+**Classes are categorized based on the pclass value as:**
 
-pclass = 1: first_class
+**pclass = 1: first_class**
 
-pclass = 2: second_class
+**pclass = 2: second_class**
 
-pclass = 3: third_class
+**pclass = 3: third_class**
 
-Output the number of survivors and non-survivors by each class.**
+**Output the number of survivors and non-survivors by each class.**
 
 
 ````
