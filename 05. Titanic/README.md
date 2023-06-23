@@ -3,10 +3,15 @@ You may find the source of the SQL question from [StrataScratch](https://platfor
 # Question
 
 **Make a report showing the number of survivors and non-survivors by passenger class.
+
 Classes are categorized based on the pclass value as:
+
 pclass = 1: first_class
-pclass = 2: second_classs
+
+pclass = 2: second_class
+
 pclass = 3: third_class
+
 Output the number of survivors and non-survivors by each class.**
 
 
@@ -31,14 +36,14 @@ Table: titanic
 ## The thinking behind the approach
 There are two ways to think of the expected output:
 
+**Expected Output 1**
 | pclass   | non_survivors | survivors |
 | -------- | ------------- | --------- |
 | 1        |               |           |
 | 2        |               |           |
 | 3        |               |           |
 
-Or
-
+**Expected Output 2**
 | survived   | first_class | second_class | third_class |
 | ---------- | ----------- | ------------ | ----------- |
 | 0          |             |              |             |
