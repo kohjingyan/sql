@@ -46,7 +46,7 @@ There are two ways to think of the expected output:
 
 We will look at how to derive at **Expected Output 1**. The same method can be applied for **Expected Output 2**.
 1. Group the result by `pclass`.
-2. For each non-survivor, `survived = 0`. We count the number of non-survivor by using **CASE WHEN**. We utilize the concept of an indicator function.
+2. For each non-survivor, `survived = 0`. We count the number of non-survivor by using **CASE WHEN** statement. We utilize the concept of an indicator function. The pseudocode is as follows:
 ````
 SUM(
   IF survived = 0,
@@ -54,7 +54,7 @@ SUM(
   ELSE 0)
 ````
 
-3. We do the same for survivor.
+3. Repeat the process of step 2 for survivor.
 
 
 ## Step-by-step Guide
