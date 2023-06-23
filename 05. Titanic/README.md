@@ -45,40 +45,47 @@ There are two ways to think of the expected output:
 | 1          |             |              |             |
 
 We will look at how to derive at **Expected Output 1**. The same method can be applied for **Expected Output 2**.
-1. For each non-survivor, `survived = 0`. We count the number of non-survivor by using **CASE WHEN**.\
+1. Group the result by `pclass`.
+2. For each non-survivor, `survived = 0`. We count the number of non-survivor by using **CASE WHEN**. We utilize the concept of an indicator function.\
 ````
-SUM(IF survived = 0
-  1
-ELSE 0)
+SUM(
+  IF survived = 0,
+     1
+  ELSE 0)
 ````
+
+3. We do the same for survivor.
 
 
 ## Step-by-step Guide
-### 1. Filter the result to songs that ranked the top.
+### 1. Group the result by `pclass`.
 
 ````sql
 SELECT *
-FROM spotify_worldwide_daily_song_ranking
-WHERE position = 1
+FROM titanic
+GROUP BY pclass
 ````
 
-### 2. Group the result by songs and count the number of times the song was top.
+### 2. For each pclass, count the number of non-survivors.
 
 ````sql
-SELECT trackname, COUNT(position) as top
-FROM spotify_worldwide_daily_song_ranking
-WHERE position = 1
-GROUP BY trackname
+SELECT pclass, 
+  SUM(CASE WHEN survived = 0 THEN 1 ELSE 0 END) AS non_survivors
+FROM titanic
+GROUP BY pclass
+
 ````
 
-### 3. Sort the number of times the song was ranked first in descending order.
+### 3. For each pclass, count the number of survivors.
 
 ````sql
-SELECT trackname, COUNT(position) as top
-FROM spotify_worldwide_daily_song_ranking
-WHERE position = 1
-GROUP BY trackname
-ORDER BY top DESC;
+SELECT pclass, 
+  SUM(CASE WHEN survived = 0 THEN 1 ELSE 0 END) AS non_survivors,
+  SUM(CASE WHEN survived = 1 THEN 1 ELSE 0 END) AS survivors
+FROM titanic
+GROUP BY pclass
+ORDER BY pclass;
+
 ````
 
 If you have any questions or feedback, please feel free to email me at kohjingyan@gmail.com or at [LinkedIn](https://www.linkedin.com/in/koh-jing-yan/).
