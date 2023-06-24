@@ -17,6 +17,7 @@ Here, you will find my solutions to SQL problems sourced from StrataScratch:
 | 03.    | [Marketing Campaign Success [Advanced]](https://github.com/kohjingyan/sql/tree/main/03.%20Marketing%20Campaign%20Success%20%5BAdvanced%5D) | Hard |
 | 04.    | [Top Ranked Songs](https://github.com/kohjingyan/sql/tree/main/04.%20Top%20Ranked%20Songs) | Medium |
 | 05.    | [Titanic](https://github.com/kohjingyan/sql/tree/main/05.%20Titanic) | Medium |
+| 06.    | [Top Percentile Fraud](https://github.com/kohjingyan/sql/tree/main/06.%20Top%20Percentile%20Fraud) | Hard |
 
 Feel free to explore the solutions and gain insights into SQL problem-solving techniques. If you have any questions or feedback, please feel free to reach out to me at kohjingyan@gmail.com or at [LinkedIn](https://www.linkedin.com/in/koh-jing-yan/).
 
