@@ -7,21 +7,13 @@ Your objective is to identify the top 5 percentile of claims from each state. Yo
 
 
 ````
-Table: titanic
+Table: fraud_score
 | Column Name   | Column Type |
 | ------------- | ----------- |
-| passengerid   | int         |
-| survived      | int         |
-| pclass        | int         |
-| name          | varchar     |
-| sex           | varchar     |
-| age           | float       |
-| sibsp         | int         |
-| parch         | int         |
-| ticket        | varchar     |
-| fare          | float       |
-| cabin         | varchar     |
-| embarked      | varchar     |
+| policy_num    | varchar     |
+| state         | varchar     |
+| claim_cost    | int         |
+| fraud_score   | float       |
 ````
 
 ## The thinking behind the approach
