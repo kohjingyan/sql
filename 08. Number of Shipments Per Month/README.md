@@ -32,7 +32,7 @@ WITH cte AS (
 ### 2. Count the number of shipments, group by date_ym.
 
 ````sql
-WITH cte AS(
+WITH cte AS (
 	SELECT shipment_id, 
 	       DATE_FORMAT(shipment_date, '%Y-%m') AS date_ym
 	FROM amazon_shipment)
