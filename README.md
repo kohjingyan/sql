@@ -20,6 +20,7 @@ Here, you will find my solutions to SQL problems sourced from StrataScratch:
 | 06.    | [Top Percentile Fraud](https://github.com/kohjingyan/sql/tree/main/06.%20Top%20Percentile%20Fraud) | Hard |
 | 07.    | [Finding User Purchases](https://github.com/kohjingyan/sql/tree/main/07.%20Finding%20User%20Purchases) | Medium |
 | 08.    | [Number of Shipments Per Month](https://github.com/kohjingyan/sql/tree/main/08.%20Number%20of%20Shipments%20Per%20Month) | Medium |
+| 09.    | [Number of Shipments Per Month](https://github.com/kohjingyan/sql/tree/main/09.%20Workers%20With%20The%20Highest%20Salaries) | Medium |
 
 Feel free to explore the solutions and gain insights into SQL problem-solving techniques. If you have any questions or feedback, please feel free to reach out to me at kohjingyan@gmail.com or at [LinkedIn](https://www.linkedin.com/in/koh-jing-yan/).
 
