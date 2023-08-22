@@ -2,8 +2,7 @@ You may find the source of the SQL question from [StrataScratch](https://platfor
 
 # Question
 
-**You have been asked to find the job titles of the highest-paid employees.
-
+**You have been asked to find the job titles of the highest-paid employees.<br>
 Your output should include the highest-paid title or multiple titles with the same salary.**
 
 
