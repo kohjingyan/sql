@@ -28,29 +28,39 @@ Table: title
 ````
 
 ## The thinking behind the approach
-1. 
+1. Join both tables on worker's id.
+2. Add a filter such that we filter for the row(s) that have the highest salary of all.
+3. Select for the worker title only.
 
 ## Step-by-step Guide
-### 1. Create the cte.
+### 1. Join both tables on worker's id.
 
 ````sql
-WITH cte AS (
-	SELECT shipment_id, 
-	       DATE_FORMAT(shipment_date, '%Y-%m') AS date_ym
-	FROM amazon_shipment)
+SELECT *
+FROM worker w
+INNER JOIN title t ON w.worker_id = t.worker_ref_id
 ````
 
-### 2. Count the number of shipments, group by date_ym.
+### 2. Filter for the rows that have the maximum salary.
 
 ````sql
-WITH cte AS (
-	SELECT shipment_id, 
-	       DATE_FORMAT(shipment_date, '%Y-%m') AS date_ym
-	FROM amazon_shipment)
-SELECT date_ym, 
-       COUNT(shipment_id) AS no_of_shipments
-FROM cte
-GROUP BY date_ym;
+SELECT *
+FROM worker w
+INNER JOIN title t ON w.worker_id = t.worker_ref_id
+WHERE w.salary = (
+	SELECT MAX(salary) FROM worker
+)
+````
+
+### 3. Select for the worker title only.
+
+````sql
+SELECT worker_title
+FROM worker w
+INNER JOIN title t ON w.worker_id = t.worker_ref_id
+WHERE w.salary = (
+	SELECT MAX(salary) FROM worker
+);
 ````
 
 If you have any questions or feedback, please feel free to email me at kohjingyan@gmail.com or at [LinkedIn](https://www.linkedin.com/in/koh-jing-yan/).
