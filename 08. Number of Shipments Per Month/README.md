@@ -2,7 +2,9 @@ You may find the source of the SQL question from [StrataScratch](https://platfor
 
 # Question
 
-**Write a query that will calculate the number of shipments per month. The unique key for one shipment is a combination of shipment_id and sub_id. Output the year_month in format YYYY-MM and the number of shipments in that month.**
+**You have been asked to find the job titles of the highest-paid employees.
+
+Your output should include the highest-paid title or multiple titles with the same salary.**
 
 
 ````
