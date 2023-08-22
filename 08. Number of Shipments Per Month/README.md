@@ -1,4 +1,4 @@
-You may find the source of the SQL question from [StrataScratch](https://platform.stratascratch.com/coding/2056-number-of-shipments-per-month?code_type=3).
+You may find the source of the SQL question from [StrataScratch](https://platform.stratascratch.com/coding/10353-workers-with-the-highest-salaries?code_type=1).
 
 # Question
 
@@ -7,18 +7,28 @@ Your output should include the highest-paid title or multiple titles with the sa
 
 
 ````
-Table: amazon_shipment
+Table: worker
 | Column Name   | Column Type |
 | ------------- | ----------- |
-| shipment_id   | int         |
-| sub_id        | int         |
-| weight        | int         |
-| shipment_date | datetime    |
+| worker_id     | int         |
+| first_name    | varchar     |
+| last_name     | varchar     |
+| salary        | int         |
+| joining_date  | datetime    |
+| department    | varchar     |
+````
+
+````
+Table: title
+| Column Name   | Column Type |
+| ------------- | ----------- |
+| worker_ref_id | int         |
+| worker_title  | varchar     |
+| affected_from | datetime    |
 ````
 
 ## The thinking behind the approach
-1. Write a cte that extracts `shipment_date` in the format of YYYY-mm. This can be done using **DATE_FORMAT()** in MySQL.
-2. Use **COUNT()** to find the number of shipments, group by year_month.
+1. 
 
 ## Step-by-step Guide
 ### 1. Create the cte.
